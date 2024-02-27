@@ -26,19 +26,40 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
+    /**
+     * This Java function saves an Event object using the eventRepository.
+     * 
+     * @param event The `event` parameter is an object of type `Event`, which
+     *              contains information
+     *              about a specific event that needs to be saved in the database.
+     */
     public void save(Event event) {
         eventRepository.save(event);
     }
 
+    /**
+     * The `all()` function returns a list of all events from the event repository.
+     * 
+     * @return A List of Event objects is being returned.
+     */
     public List<Event> all() {
         return eventRepository.all();
     }
 
+    /**
+     * The function `orderEventsBySchedule` sorts a list of events by their
+     * scheduled time.
+     */
     public void orderEventsBySchedule() {
         System.out.println("Eventos ordenados por horário.");
         Collections.sort(all(), Comparator.comparing(e -> e.getHour().toLocalTime()));
     }
 
+    /**
+     * The function checks if any events are currently occurring within a two-hour
+     * window and prints
+     * out their names if so.
+     */
     public void checkEventsOccurring() {
         LocalDateTime now = LocalDateTime.now();
         for (Event event : all()) {
@@ -50,6 +71,11 @@ public class EventService {
         }
     }
 
+    /**
+     * The function `checkPastEvents` iterates through all events and prints the
+     * names of those that
+     * have already occurred.
+     */
     public void checkPastEvents() {
         LocalDateTime now = LocalDateTime.now();
         for (Event event : all()) {
@@ -59,6 +85,11 @@ public class EventService {
         }
     }
 
+    /**
+     * The `saveEventInFile` function writes event data to a file in a specific
+     * format and handles any
+     * IOException that may occur.
+     */
     public void saveEventInFile() {
         try (FileWriter fileWriter = new FileWriter("br/com/herlandio7/models/events.data");
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
@@ -76,10 +107,18 @@ public class EventService {
             System.out.println("Erro ao salvar eventos no arquivo.");
             e.printStackTrace();
         }
-
         System.exit(0);
     }
 
+    /**
+     * The function `loadEventInFile` reads event data from a file and creates a
+     * list of Event objects
+     * based on the data.
+     * 
+     * @return The method `loadEventInFile` returns a List of Event objects that are
+     *         read from a file
+     *         named "events.data".
+     */
     public static List<Event> loadEventInFile() {
         List<Event> events = new ArrayList<>();
         try (FileReader fileReader = new FileReader("br/com/herlandio7/models/events.data");
@@ -100,18 +139,41 @@ public class EventService {
         } catch (IOException e) {
             System.out.println("Arquivo de eventos não encontrado");
         }
-
         return events;
     }
 
+    /**
+     * The function filters a list of events by name and returns the first event
+     * with a matching name,
+     * or null if none is found.
+     * 
+     * @param listOfEvents A list of Event objects containing various events.
+     * @param eventName    The `eventName` parameter is a `String` representing the
+     *                     name of the event that
+     *                     you want to filter from the list of events.
+     * @return The method `filterEvents` returns an `Event` object that matches the
+     *         given `eventName`
+     *         from the `listOfEvents`. If no matching event is found, it returns
+     *         `null`.
+     */
     public Event filterEvents(List<Event> listOfEvents, String eventName) {
         Optional<Event> result = listOfEvents.stream()
                 .filter(u -> u.getName().equalsIgnoreCase(eventName))
                 .findFirst();
-
         return result.orElse(null);
     }
 
+    /**
+     * The function `attendAnEvent` adds a user to a specified event's participant
+     * list if the event
+     * exists and the user is not already a participant.
+     * 
+     * @param listEvent The `listEvent` parameter is an object of the `Event` class,
+     *                  which represents
+     *                  an event that users can attend.
+     * @param user      The `user` parameter represents a user who is attending an
+     *                  event.
+     */
     public void attendAnEvent(Event listEvent, User user) {
         if (listEvent != null) {
             if (!listEvent.getParticipants().contains(user)) {
@@ -126,6 +188,17 @@ public class EventService {
         }
     }
 
+    /**
+     * The function notifies users in the same city as the event about the event.
+     * 
+     * @param event The `event` parameter represents an event for which users are
+     *              being notified. It
+     *              likely contains information such as the event name, location
+     *              (city), date, and other details.
+     * @param users A list of User objects representing the users who should be
+     *              notified about the
+     *              event.
+     */
     public void notifyUserAboutEvent(Event event, List<User> users) {
         users.stream()
                 .filter(user -> user.getCity().equalsIgnoreCase(event.getCity()))
@@ -135,6 +208,17 @@ public class EventService {
                 });
     }
 
+    /**
+     * The function notifies the user of events happening in their city by filtering
+     * events based on
+     * the user's city and printing event details.
+     * 
+     * @param events A list of Event objects containing information about various
+     *               events.
+     * @param user   The `user` parameter is an object of the `User` class. It
+     *               likely contains
+     *               information about a specific user, such as their city.
+     */
     public void notifyEvent(List<Event> events, User user) {
         System.out.println("Notificações de Eventos:");
         events.stream()
@@ -145,6 +229,15 @@ public class EventService {
         System.out.println();
     }
 
+    /**
+     * The function removes a user from an event and prints a message confirming the
+     * cancellation.
+     * 
+     * @param event Event object representing the event from which the user will be
+     *              removed.
+     * @param user  The `user` parameter represents a user who is being removed from
+     *              an event.
+     */
     public void removeUserFromEvent(Event event, User user) {
         if (event != null) {
             user.getConfirmedEvents().remove(event);

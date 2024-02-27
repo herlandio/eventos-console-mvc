@@ -20,8 +20,7 @@ public class EventsManagement {
         EventView eventView = new EventView();
 
         while (true) {
-            new EventsController(scanner, userService, eventService, eventView)
-                    .menu();
+            new EventsController(scanner, userService, eventService, eventView).menu();
         }
     }
 }
