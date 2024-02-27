@@ -15,7 +15,7 @@ public class EventView {
         System.out.println("1 - Cadastrar usuários");
         System.out.println("2 - Cadastrar eventos");
         System.out.println("3 - Listar usuários");
-        System.out.println("4 - LIstar eventos");
+        System.out.println("4 - Listar eventos");
         System.out.println("5 - Ordenar eventos por horário");
         System.out.println("6 - Eventos Acontecendo no momento");
         System.out.println("7 - Eventos que já passaram");
