@@ -67,11 +67,11 @@ public class EventsController {
         System.out.println("Cadastro de Evento:");
         System.out.print("Nome do evento: ");
         String name = scanner.next();
-        System.out.print("Endereço: ");
+        System.out.print("Cidade: ");
         String address = scanner.next();
-        System.out.print("Categoria (FESTA, ESPORTIVO, SHOW, OUTRO): ");
+        System.out.print("Selecione a categoria (FESTA, ESPORTIVO, SHOW, OUTRO): ");
         EventCategory category = EventCategory.valueOf(scanner.next().toUpperCase());
-        System.out.print("Digite o horário do evento (formato HH:mm): ");
+        System.out.print("Horário do evento (formato HH:mm): ");
         String inputHour = scanner.next();
         LocalTime formatHour = LocalTime.parse(inputHour, DateTimeFormatter.ofPattern("HH:mm"));
         LocalDateTime currentHour = LocalDateTime.now();
