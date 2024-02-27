@@ -31,7 +31,7 @@ public class EventView {
             System.out.println("Nome: " + event.getName() +
                     ", Categoria: " + event.getCategory() +
                     ", Horário: " + event.getHour() +
-                    ", Endereço: " + event.getAddress() +
+                    ", Cidade: " + event.getCity() +
                     ", Descrição: " + event.getDescription() +
                     ", Participantes: " + event.getParticipants().size());
         }
@@ -42,7 +42,7 @@ public class EventView {
         System.out.println("Lista de Usuários:");
         for (var user : users) {
             System.out.println("Nome: " + user.getName() +
-                    ", Cidade: " + user.getAddress() +
+                    ", Cidade: " + user.getCity() +
                     ", Idade: " + user.getAge());
         }
         System.out.println();

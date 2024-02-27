@@ -72,7 +72,7 @@ public class EventsController {
         event.setName(name);
         event.setDescription(description);
         event.setHour(hour);
-        event.setAddress(address);
+        event.setCity(address);
         event.setCategory(category);
         eventService.save(event);
         eventService.notifyUserAboutEvent(event, users);
@@ -92,7 +92,7 @@ public class EventsController {
         User user = new User();
         user.setName(name);
         user.setAge(age);
-        user.setAddress(city);
+        user.setCity(city);
         userService.save(user);
         System.out.println("Usuário cadastrado com sucesso!\n");
     }

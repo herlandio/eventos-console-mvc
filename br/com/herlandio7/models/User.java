@@ -5,13 +5,13 @@ import java.util.List;
 
 public class User {
     private String name;
-    private String address;
+    private String city;
     private int age;
     private List<Event> confirmEvents = new ArrayList<>();
 
-    public User(String name, String address, int age) {
+    public User(String name, String city, int age) {
         this.name = name;
-        this.address = address;
+        this.city = city;
         this.age = age;
     }
 
@@ -26,12 +26,12 @@ public class User {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public int getAge() {

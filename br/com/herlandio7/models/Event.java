@@ -6,15 +6,15 @@ import java.util.List;
 
 public class Event {
     private String name;
-    private String address;
+    private String city;
     private EventCategory category;
     private String description;
     private LocalDateTime hour;
     private List<User> participants = new ArrayList<>();
 
-    public Event(String name, String address, EventCategory category, String description, LocalDateTime hour) {
+    public Event(String name, String city, EventCategory category, String description, LocalDateTime hour) {
         this.name = name;
-        this.address = address;
+        this.city = city;
         this.category = category;
         this.description = description;
         this.hour = hour;
@@ -31,12 +31,12 @@ public class Event {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public EventCategory getCategory() {

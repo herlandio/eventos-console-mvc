@@ -66,7 +66,7 @@ public class EventService {
                 String data = String.format(
                         "%s;%s;%s;%s;%s%n",
                         event.getName(),
-                        event.getAddress(),
+                        event.getCity(),
                         event.getCategory(),
                         event.getHour(),
                         event.getDescription());
@@ -98,7 +98,7 @@ public class EventService {
                 events.add(event);
             }
         } catch (IOException e) {
-            System.out.println("Arquivo de eventos não encontrado. Criando um novo arquivo.");
+            System.out.println("Arquivo de eventos não encontrado");
         }
 
         return events;
@@ -128,7 +128,7 @@ public class EventService {
 
     public void notifyUserAboutEvent(Event event, List<User> users) {
         users.stream()
-                .filter(user -> user.getAddress().equalsIgnoreCase(event.getAddress()))
+                .filter(user -> user.getCity().equalsIgnoreCase(event.getCity()))
                 .forEach(user -> {
                     System.out.println("Notificando usuário " + user.getName() + " sobre o evento: " + event.getName());
                     notifyEvent(List.of(event), user);
@@ -138,9 +138,9 @@ public class EventService {
     public void notifyEvent(List<Event> events, User user) {
         System.out.println("Notificações de Eventos:");
         events.stream()
-                .filter(event -> event.getAddress().equalsIgnoreCase(user.getAddress()))
+                .filter(event -> event.getCity().equalsIgnoreCase(user.getCity()))
                 .forEach(event -> {
-                    System.out.println("Evento na sua cidade: " + event.getName() + ", Local: " + event.getAddress());
+                    System.out.println("Evento na sua cidade: " + event.getName() + ", Local: " + event.getCity());
                 });
         System.out.println();
     }
